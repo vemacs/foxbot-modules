@@ -15,8 +15,11 @@
 # You should have received a copy of the GNU General Public License along
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from random import random
 from sopel.module import rule, unblockable, event
 from sopel.formatting import bold, color, colors
+
+chance = 0.1
 
 @rule('^\[(.+)\]$')
 def intensify(bot, trigger):
@@ -25,26 +28,30 @@ def intensify(bot, trigger):
 
 @rule('^wew$')
 def wew(bot, trigger):
-    bot.say(bold('w e w l a d'))
+    if random() < chance:
+        bot.say(bold('w e w l a d'))
 
 
 @rule('^same$')
 def same(bot, trigger):
-    if not trigger.nick == bot.config.core.nick:
-        bot.say('same')
+    if random() < chance:
+        if not trigger.nick == bot.config.core.nick:
+            bot.say('same')
 
 
 @rule('^ayy+')
 def ayy(bot, trigger):
-    bot.say('lmao')
+    if random() < chance:
+        bot.say('lmao')
 
 
 @rule('.*')
 @event("JOIN")
 @unblockable
 def honk_join(bot, trigger):
-    if not trigger.nick == bot.config.core.nick:
-        bot.action('honks {0}'.format(trigger.nick))
+    if random() < chance:
+        if not trigger.nick == bot.config.core.nick:
+            bot.action('honks {0}'.format(trigger.nick))
 
 
 @rule('.*')
