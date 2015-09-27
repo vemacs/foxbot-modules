@@ -19,7 +19,7 @@ from random import random
 from sopel.module import rule, unblockable, event
 from sopel.formatting import bold, color, colors
 
-chance = 0.1
+chance = 0.25
 
 @rule('^\[(.+)\]$')
 def intensify(bot, trigger):
