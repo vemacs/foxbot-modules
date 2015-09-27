@@ -31,7 +31,7 @@ def now_playing(bot, trigger):
     if trigger.group(2):
         args = trigger.group(2).split(' ')
         if args[0] in add_strings:
-            if len(args == 1):
+            if len(args) == 1:
                 bot.reply('please provide a username. (.np -s <url>)')
             else:
                 username = args[1].strip()
