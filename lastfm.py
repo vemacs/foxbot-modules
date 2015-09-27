@@ -1,6 +1,7 @@
 # coding=utf8
 from sopel.module import commands
 from sopel.config.types import StaticSection, ValidatedAttribute
+from sopel.formatting import color, colors
 import pylast
 
 class LastSection(StaticSection):
@@ -44,5 +45,5 @@ def now_playing(bot, trigger):
     if not current_track:
         bot.say('%s is not listening to anything right now.' % trigger.nick)
         return
-    bot.say('%s is now playing: %s - %s' % (trigger.nick, current_track.get_artist().get_name(), current_track.get_title()))
+    bot.say('%s is now playing: %s - %s | %s' % (trigger.nick, current_track.get_artist().get_name(), current_track.get_title(), color(current_track.get_url(), colors.BLUE)))
 
