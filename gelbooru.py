@@ -74,7 +74,7 @@ def gelbooru(bot, trigger):
     elif 'q' in rating:
         rating = color('Questionable', colors.YELLOW)
     elif 's' in rating:
-        rating = colors('Safe', colors.GREEN)
+        rating = color('Safe', colors.GREEN)
 
     bot.say('[Gelbooru] Score: {0} | Rating: {1} | http://gelbooru.com/index.php?page=post&s=view&id={2} | Tags: {3}'.format(score, rating, id, tags.strip()))
 
@@ -91,7 +91,7 @@ def gelbooru_url(bot, trigger):
     elif 'q' in rating:
         rating = color('Questionable', colors.YELLOW)
     elif 's' in rating:
-        rating = colors('Safe', colors.GREEN)
+        rating = color('Safe', colors.GREEN)
 
     bot.say('[Gelbooru] Score: {0} | Rating: {1} | Tags: {2}'.format(score, rating, tags.strip()))
 
