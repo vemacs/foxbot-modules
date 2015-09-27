@@ -28,6 +28,12 @@ def wew(bot, trigger):
     bot.say(bold('w e w l a d'))
 
 
+@rule('^same$')
+def same(bot, trigger):
+    if not trigger.nick == bot.config.core.nick:
+        bot.say('same')
+
+
 @rule('^ayy+')
 def ayy(bot, trigger):
     bot.say('lmao')
