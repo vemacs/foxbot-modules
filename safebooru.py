@@ -2,7 +2,7 @@
 """
 safebooru.py - People on IRC will love your leggings fetish!
 Copyright 2014 Max Gurela
-Adapted for use with sopel from https://github.com/infinitylabs/uguubot/blob/master/plugins/safebooru.py
+Adapted for use with sopel from https://github.org/infinitylabs/uguubot/blob/master/plugins/safebooru.py
 
 Licensed under the Eiffel Forum License 2 (It's GPL compatible!).
 """
@@ -19,7 +19,7 @@ lastsearch = ''
 
 
 def setup(bot):
-    regex = re.compile('safebooru.com.*(?:\?|&)id\=([-_a-zA-Z0-9]+)')
+    regex = re.orgpile('safebooru.org.*(?:\?|&)id\=([-_a-zA-Z0-9]+)')
     if not bot.memory.contains('url_callbacks'):
         bot.memory['url_callbacks'] = tools.SopelMemory()
     bot.memory['url_callbacks'][regex] = safebooru_url
@@ -36,7 +36,7 @@ def refresh_cache(bot, inp):
         search = inp.replace('explicit', 'rating:explicit').replace('nsfw', 'rating:explicit').replace('safe', 'rating:safe').replace('sfw', 'rating:safe')
     if not 'rating:' in search:
         search += ' rating:safe'
-    soup = get_soup('http://safebooru.com/index.php?page=dapi&s=post&q=index&limit=10&tags={0}'.format(search))
+    soup = get_soup('http://safebooru.org/index.php?page=dapi&s=post&q=index&limit=10&tags={0}'.format(search))
     posts = soup.find_all('post')
 
     while num < len(posts):
@@ -50,7 +50,7 @@ def refresh_cache(bot, inp):
 @commands('gb', 'safebooru')
 def safebooru(bot, trigger):
     """
-    .safebooru <tags> -- Gets a random image, based on given tags from safebooru.com
+    .safebooru <tags> -- Gets a random image, based on given tags from safebooru.org
     """
     global lastsearch
     global safebooru_cache
@@ -76,12 +76,12 @@ def safebooru(bot, trigger):
     elif 's' in rating:
         rating = color('Safe', colors.GREEN)
 
-    bot.say('[safebooru] Score: {0} | Rating: {1} | http://safebooru.com/index.php?page=post&s=view&id={2} | Tags: {3}'.format(score, rating, id, tags.strip()))
+    bot.say('[safebooru] Score: {0} | Rating: {1} | http://safebooru.org/index.php?page=post&s=view&id={2} | Tags: {3}'.format(score, rating, id, tags.strip()))
 
 
-@rule(r'(?:.*)(?:safebooru.com.*?id=)([-_a-zA-Z0-9]+)(?: .+)?')
+@rule(r'(?:.*)(?:safebooru.org.*?id=)([-_a-zA-Z0-9]+)(?: .+)?')
 def safebooru_url(bot, trigger):
-    soup = get_soup('http://safebooru.com/index.php?page=dapi&s=post&q=index&id={0}'.format(trigger.group(1)))
+    soup = get_soup('http://safebooru.org/index.php?page=dapi&s=post&q=index&id={0}'.format(trigger.group(1)))
     posts = soup.find_all('post')
 
     id, score, url, rating, tags = (posts[0].get('id'), posts[0].get('score'), posts[0].get('file_url'), posts[0].get('rating'), posts[0].get('tags'))
