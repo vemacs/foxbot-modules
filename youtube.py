@@ -63,7 +63,7 @@ def shutdown(bot):
 
 
 def ytget(bot, trigger, uri):
-    if not bot.config.has_section('google') or not bot.config.google.public_key:
+    if not bot.config.google.public_key:
         return None
     bytes = web.get(uri + '&key=' + bot.config.google.public_key)
     try:
