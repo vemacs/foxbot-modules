@@ -1,7 +1,7 @@
 # coding=utf8
 from sopel.module import commands
 from sopel.config.types import StaticSection, ValidatedAttribute
-from sopel.formatting import color, colors
+from sopel.formatting import color, colors, bold
 import pylast
 
 ADD_STRINGS = [
@@ -46,5 +46,5 @@ def now_playing(bot, trigger):
         if not current_track:
             bot.say('{0} is not listening to anything right now.'.format(trigger.nick))
         else:
-            bot.say('{0} is now playing: {1} - {2} | {3}'.format(trigger.nick, current_track.get_artist().get_name(), current_track.get_title(), color(current_track.get_url(), colors.BLUE)))
+            bot.say('{0} is now playing: {1} - {2} | {3}'.format(trigger.nick, bold(current_track.get_artist().get_name()), bold(current_track.get_title()), color(current_track.get_url(), colors.BLUE)))
 
