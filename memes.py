@@ -12,6 +12,11 @@ def wew(bot, trigger):
     bot.say(bold('w e w l a d'))
 
 
+@rule('^ayy+')
+def wew(bot, trigger):
+    bot.say('lmao')
+
+
 @rule('.*')
 @event("JOIN")
 @unblockable
