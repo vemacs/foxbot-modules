@@ -39,3 +39,11 @@ def ayy(bot, trigger):
 def honk_join(bot, trigger):
     if not trigger.nick == bot.config.core.nick:
         bot.action('honks {0}'.format(trigger.nick))
+
+
+@rule('.*')
+@event("JOIN")
+@unblockable
+def abuse_tomoko(bot, trigger):
+    if trigger.nick == 'Tomoko_A_Best':
+        bot.say(color('[NORMIE ALERT]', colors.RED))
