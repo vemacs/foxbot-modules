@@ -13,7 +13,7 @@ def wew(bot, trigger):
 
 
 @rule('^ayy+')
-def wew(bot, trigger):
+def ayy(bot, trigger):
     bot.say('lmao')
 
 
