@@ -27,7 +27,7 @@ def dtop(bot, trigger):
         bot.reply('Desktop set!')
         return
     nick = trigger.group(2).split(' ')[0]
-    desktop_url = bot.db.get_nick_value(trigger.nick, 'desktop_url')
+    desktop_url = bot.db.get_nick_value(nick, 'desktop_url')
     if not desktop_url:
         bot.say('%s has no saved desktop!' % nick)
         return
