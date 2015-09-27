@@ -1,6 +1,6 @@
 # coding=utf8
 from sopel.module import commands
-from constants import ADD_STRINGS
+from util.constants import ADD_STRINGS
 
 
 @commands('dtop', 'desktop')

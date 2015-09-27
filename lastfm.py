@@ -3,7 +3,7 @@ from sopel.module import commands
 from sopel.config.types import StaticSection, ValidatedAttribute
 from sopel.formatting import color, colors
 import pylast
-from constants import ADD_STRINGS
+from util.constants import ADD_STRINGS
 
 class LastSection(StaticSection):
     api_key = ValidatedAttribute('api_key')
