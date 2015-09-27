@@ -16,7 +16,7 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from sopel.module import rule, unblockable, event
-from sopel.formatting import bold
+from sopel.formatting import bold, color, colors
 
 @rule('^\[(.+)\]$')
 def intensify(bot, trigger):
