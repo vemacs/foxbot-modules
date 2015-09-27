@@ -1,6 +1,10 @@
 # coding=utf8
 from sopel.module import commands
-from util.constants import ADD_STRINGS
+
+ADD_STRINGS = [
+    "-a", "-add", "--add",
+    "-s", "-set", "--set"
+]
 
 
 @commands('dtop', 'desktop')
