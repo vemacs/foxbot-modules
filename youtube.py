@@ -130,7 +130,7 @@ def ytinfo(bot, trigger, found_match=None):
     if video_info is None:
         return
 
-    message = ('[You' + color('Tube', colors.WHITE, colors.RED) + ']' +
+    message = ('[YouTube]' +
               ' Title: ' + bold(video_info['snippet']['title']) +
               ' | Uploader: ' + video_info['snippet']['channelTitle'] +
               ' | Uploaded: ' + video_info['snippet']['publishedAt'] +
