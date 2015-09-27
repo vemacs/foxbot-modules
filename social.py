@@ -49,6 +49,11 @@ def selfie(bot, trigger):
     run_command(bot, trigger, 'selfie')
 
 
+@commands('git')
+def git(bot, trigger):
+    run_command(bot, trigger, 'git')
+
+
 def run_command(bot, trigger, cmd):
     db_key = 'social_' + cmd
     nick = trigger.nick
