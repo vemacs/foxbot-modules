@@ -9,6 +9,11 @@ keys = {
     'waifu': db_prefix + 'waifu_url'
 }
 
+add_strings = [
+    "-a", "-add", "--add",
+        "-s", "-set", "--set"
+]
+
 @commands('lasturl')
 def lasturl(bot, trigger):
     sender = trigger.sender
@@ -22,17 +27,17 @@ def desktop(bot, trigger):
     if not trigger.group(2):
         url = bot.db.get_nick_value(trigger.nick, keys['desktop'])
         if not url:
-            bot.reply('You have no saved desktop!')
+            bot.reply('you have no saved desktop!')
             return
         bot.reply('%s [%s]' % (url, trigger.nick))
         return
-    if trigger.group(2).split(' ')[0] == '-s':
-        if trigger.group(2).split(' ')[1].strip() == '':
-            bot.reply('Please provide a URL! (.dtop -s <url>)')
+    if trigger.group(2).split(' ')[0] in add_strings:
+        if len(trigger.group(2).split(' ')[1].strip()) == 0:
+            bot.reply('please provide a URL! (.dtop -s <url>)')
             return
         url = trigger.group(2).split(' ')[1].strip()
         bot.db.set_nick_value(trigger.nick, keys['desktop'], url)
-        bot.reply('Desktop set!')
+        bot.reply('desktop set!')
         return
     nick = trigger.group(2).split(' ')[0]
     url = bot.db.get_nick_value(nick, keys['desktop'])
@@ -46,17 +51,17 @@ def homepage(bot, trigger):
     if not trigger.group(2):
         url = bot.db.get_nick_value(trigger.nick, keys['homepage'])
         if not url:
-            bot.reply('You have no saved homepage!')
+            bot.reply('you have no saved homepage!')
             return
         bot.reply('%s [%s]' % (url, trigger.nick))
         return
-    if trigger.group(2).split(' ')[0] == '-s':
-        if trigger.group(2).split(' ')[1].strip() == '':
-            bot.reply('Please provide a URL! (.homepage -s <url>)')
+    if trigger.group(2).split(' ')[0] in add_strings:
+        if len(trigger.group(2).split(' ')[1].strip()) == 0:
+            bot.reply('please provide a URL! (.homepage -s <url>)')
             return
         url = trigger.group(2).split(' ')[1].strip()
         bot.db.set_nick_value(trigger.nick, keys['homepage'], url)
-        bot.reply('Homepage set!')
+        bot.reply('homepage set!')
         return
     nick = trigger.group(2).split(' ')[0]
     url = bot.db.get_nick_value(nick, keys['homepage'])
@@ -70,17 +75,17 @@ def homescreen(bot, trigger):
     if not trigger.group(2):
         url = bot.db.get_nick_value(trigger.nick, keys['homescreen'])
         if not url:
-            bot.reply('You have no saved homescreen!')
+            bot.reply('you have no saved homescreen!')
             return
         bot.reply('%s [%s]' % (url, trigger.nick))
         return
-    if trigger.group(2).split(' ')[0] == '-s':
-        if trigger.group(2).split(' ')[1].strip() == '':
-            bot.reply('Please provide a URL! (.homescreen -s <url>)')
+    if trigger.group(2).split(' ')[0] in add_strings:
+        if len(trigger.group(2).split(' ')[1].strip()) == 0:
+            bot.reply('please provide a URL! (.homescreen -s <url>)')
             return
         url = trigger.group(2).split(' ')[1].strip()
         bot.db.set_nick_value(trigger.nick, keys['homescreen'], url)
-        bot.reply('Homescreen set!')
+        bot.reply('homescreen set!')
         return
     nick = trigger.group(2).split(' ')[0]
     url = bot.db.get_nick_value(nick, keys['homescreen'])
@@ -94,17 +99,17 @@ def waifu(bot, trigger):
     if not trigger.group(2):
         url = bot.db.get_nick_value(trigger.nick, keys['waifu'])
         if not url:
-            bot.reply('You have no saved waifu!')
+            bot.reply('you have no saved waifu!')
             return
         bot.reply('%s [%s]' % (url, trigger.nick))
         return
-    if trigger.group(2).split(' ')[0] == '-s':
-        if trigger.group(2).split(' ')[1].strip() == '':
-            bot.reply('Please provide a URL! (.waifu -s <url>)')
+    if trigger.group(2).split(' ')[0] in add_strings:
+        if len(trigger.group(2).split(' ')[1].strip()) == 0:
+            bot.reply('please provide a URL! (.waifu -s <url>)')
             return
         url = trigger.group(2).split(' ')[1].strip()
         bot.db.set_nick_value(trigger.nick, keys['waifu'], url)
-        bot.reply('Waifu set!')
+        bot.reply('waifu set!')
         return
     nick = trigger.group(2).split(' ')[0]
     url = bot.db.get_nick_value(nick, keys['waifu'])
@@ -112,3 +117,4 @@ def waifu(bot, trigger):
         bot.reply('%s has no saved waifu!' % nick)
         return
     bot.reply('%s [%s]' % (url, nick))
+
