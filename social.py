@@ -19,25 +19,30 @@ def lasturl(bot, trigger):
 
 @commands('dtop', 'desktop')
 def desktop(bot, trigger):
-    run_command(bot, trigger, 'desktop')
+    res = run_command(bot, trigger, 'desktop')
+    bot.reply(res)
 
 
 @commands('waifu')
 def desktop(bot, trigger):
-    run_command(bot, trigger, 'waifu')
+    res = run_command(bot, trigger, 'waifu')
+    bot.reply(res)
 
 
 @commands('hs', 'homescreen')
 def desktop(bot, trigger):
-    run_command(bot, trigger, 'homescreen')
+    res = run_command(bot, trigger, 'homescreen')
+    bot.reply(res)
 
 
 @commands('hp', 'homepage')
 def desktop(bot, trigger):
-    run_command(bot, trigger, 'homepage')
+    res = run_command(bot, trigger, 'homepage')
+    bot.reply(res)
 
 
 def run_command(bot, trigger, cmd):
+    res = None
     db_prefix = 'social_'
     db_key = db_prefix + cmd
     nick = trigger.nick
@@ -45,19 +50,20 @@ def run_command(bot, trigger, cmd):
         args = trigger.group(2).split(' ')
         if args[0] in add_strings:
             if len(args == 1):
-                bot.reply('please provide a URL. (.%s -s <url>)' % cmd)
+                res = 'please provide a URL. (.%s -s <url>)' % cmd
             else:
                 url = args[1].strip()
                 bot.db.set_nick_value(trigger.nick, db_key, url)
-                bot.reply('%s set.' % cmd)
+                res = '%s set.' % cmd
         else:
             nick = args[0]
     else:
         url = bot.db.get_nick_value(nick, db_key)
         if not url:
             if nick == trigger.nick:
-                bot.reply('you have no saved %s.' % cmd)
+                res = 'you have no saved %s.' % cmd
             else:
-                bot.reply('%s has no saved %s.' % (nick, cmd))
+                res = '%s has no saved %s.' % (nick, cmd)
         else:
-            bot.reply('%s [%s]' % (url, nick))
+            res = '%s [%s]' % (url, nick)
+    return res
