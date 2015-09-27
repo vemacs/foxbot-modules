@@ -16,7 +16,7 @@ def dtop(bot, trigger):
         if not desktop_url:
             bot.say('You have no saved desktop!')
             return
-        bot.say('%s [%s]' % (desktop_url, nick))
+        bot.say('%s [%s]' % (desktop_url, trigger.nick))
         return
     if trigger.group(2).split(' ')[0] == '-s':
         if trigger.group(2).split(' ')[1].strip() == '':
