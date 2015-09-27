@@ -25,13 +25,16 @@ ADD_STRINGS = [
     "-s", "-set", "--set"
 ]
 
+network = None
 
 class LastSection(StaticSection):
     api_key = ValidatedAttribute('api_key')
 
 
 def setup(bot):
+    global network
     bot.config.define_section('lastfm', LastSection)
+    network = pylast.LastFMNetwork(api_key = bot.config.lastfm.api_key)
 
 
 def configure(config):
@@ -41,6 +44,7 @@ def configure(config):
 
 @commands('lastfm', 'np')
 def now_playing(bot, trigger):
+    global network
     db_key = 'lastfm_username'
     if trigger.group(2):
         args = trigger.group(2).split(' ')
@@ -56,7 +60,6 @@ def now_playing(bot, trigger):
     if not username:
         bot.reply('you have no last.fm username set. Please set one with .np -s <username>')
     else:
-        network = pylast.LastFMNetwork(api_key = bot.config.lastfm.api_key)
         user = network.get_user(username)
         current_track = user.get_now_playing()
         if not current_track:
