@@ -104,16 +104,16 @@ def ytsearch(bot, trigger):
     if video_info is None:
         return
 
-    message = ('[YT Search]' +
-              ' Title: ' + bold(video_info['snippet']['title']) +
-              ' | Uploader: ' + video_info['snippet']['channelTitle'] +
-              ' | Uploaded: ' + video_info['snippet']['publishedAt'] +
-              ' | Duration: ' + video_info['contentDetails']['duration'] +
-              ' | Views: ' + video_info['statistics']['viewCount'] +
-              ' | Comments: ' + video_info['statistics']['commentCount'] +
-              ' | ' + color(video_info['statistics']['likeCount'] + '+', colors.GREEN) +
-              ' | ' + color(video_info['statistics']['dislikeCount'] + '-', colors.RED) +
-              ' | Link: https://youtu.be/' + video_info['id'])
+    title = video_info['snippet']['title']
+    uploader = video_info['snippet']['channelTitle']
+    duration = video_info['contentDetails']['duration']
+    views = video_info['statistics']['viewCount']
+    likes = video_info['statistics']['likeCount']
+    dislikes = video_info['statistics']['dislikeCount']
+
+    message = '[YT Search] {0} | https://youtu.be/{1} | Duration: {2} | Views: {3} | Uploader: {4} | {5} | {6}'
+            .format(bold(title), video_info['id'], duration, views, uploader, color(likes, colors.GREEN), color(likes, colors.RED))
+
 
     bot.say(message)
 
@@ -130,14 +130,14 @@ def ytinfo(bot, trigger, found_match=None):
     if video_info is None:
         return
 
-    message = ('[YouTube]' +
-              ' Title: ' + bold(video_info['snippet']['title']) +
-              ' | Uploader: ' + video_info['snippet']['channelTitle'] +
-              ' | Uploaded: ' + video_info['snippet']['publishedAt'] +
-              ' | Duration: ' + video_info['contentDetails']['duration'] +
-              ' | Views: ' + video_info['statistics']['viewCount'] +
-              ' | Comments: ' + video_info['statistics']['commentCount'] +
-              ' | ' + color(video_info['statistics']['likeCount'] + '+', colors.GREEN) +
-              ' | ' + color(video_info['statistics']['dislikeCount'] + '-', colors.RED))
+    title = video_info['snippet']['title']
+    uploader = video_info['snippet']['channelTitle']
+    duration = video_info['contentDetails']['duration']
+    views = video_info['statistics']['viewCount']
+    likes = video_info['statistics']['likeCount']
+    dislikes = video_info['statistics']['dislikeCount']
+
+    message = '[YouTube] {0} | Duration: {1} | Views: {2} | Uploader: {3} | {4} | {5}'
+            .format(bold(title), duration, views, uploader, color(likes, colors.GREEN), color(likes, colors.RED))
 
     bot.say(message)
