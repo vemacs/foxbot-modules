@@ -20,9 +20,9 @@ lastsearch = ''
 
 def setup(bot):
     regex = re.compile('gelbooru.com.*(?:\?|&)id\=([-_a-zA-Z0-9]+)')
-    if not sopel.memory.contains('url_callbacks'):
-        sopel.memory['url_callbacks'] = tools.SopelMemory()
-    sopel.memory['url_callbacks'][regex] = gelbooru_url
+    if not bot.memory.contains('url_callbacks'):
+        bot.memory['url_callbacks'] = tools.SopelMemory()
+    bot.memory['url_callbacks'][regex] = gelbooru_url
 
 
 def refresh_cache(bot, inp):
