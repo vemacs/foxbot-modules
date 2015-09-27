@@ -10,9 +10,6 @@ def lasturl(bot, trigger):
 
 
 @commands('dtop', 'desktop')
-@example('.dtop')
-@example('.dtop -s <url>')
-@example('.dtop <user>')
 def dtop(bot, trigger):
     if not trigger.group(2):
         desktop_url = bot.db.get_nick_value(trigger.nick, 'desktop_url')
