@@ -39,7 +39,7 @@ def now_playing(bot, trigger):
     if not bot.db.get_nick_value(trigger.nick, keys['lastfm']):
         bot.reply('you have no last.fm username set! Please set one with .np -s <username>')
         return
-    network = pylast.LastFMNetwork(api_key = bot.config.lastfm.api_key, api_secret = bot.config.lastfm.api_secret)
+    network = pylast.LastFMNetwork(api_key = bot.config.lastfm.api_key)
     user = network.get_user(trigger.nick)
     current_track = user.get_now_playing()
     if not current_track:
