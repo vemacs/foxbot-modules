@@ -38,8 +38,7 @@ def homepage(bot, trigger):
 
 
 def run_command(bot, trigger, cmd):
-    db_prefix = 'social_'
-    db_key = db_prefix + cmd
+    db_key = 'social_' + cmd
     nick = trigger.nick
     if trigger.group(2):
         args = trigger.group(2).split(' ')
