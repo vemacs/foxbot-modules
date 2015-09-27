@@ -44,6 +44,11 @@ def homepage(bot, trigger):
     run_command(bot, trigger, 'homepage')
 
 
+@commands('selfie')
+def selfie(bot, trigger):
+    run_command(bot, trigger, 'selfie')
+
+
 def run_command(bot, trigger, cmd):
     db_key = 'social_' + cmd
     nick = trigger.nick
