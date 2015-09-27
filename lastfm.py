@@ -20,20 +20,23 @@ add_strings = [
 def setup(bot):
     bot.config.define_section('lastfm', LastSection)
 
+
 def configure(config):
     config.define_section('lastfm', LastSection, validate=False)
     config.lastfm.configure_setting('api_key', 'last.fm API key')
 
+
 @commands('lastfm', 'np')
 def now_playing(bot, trigger):
     if trigger.group(2):
-        if trigger.group(2).split(' ')[0] in add_strings:
-            if len(trigger.group(2).split(' ')[1].strip()) == 0:
+        args = trigger.group(2).split(' ')
+        if args[0] in add_strings:
+            if len(args == 1):
                 bot.reply('please provide a username. (.np -s <url>)')
             else:
-                username = trigger.group(2).split(' ')[1].strip()
+                username = args[1].strip()
                 bot.db.set_nick_value(trigger.nick, keys['lastfm'], username)
-                bot.reply('username set.')
+                bot.reply('last.fm username set.')
         return
     username = bot.db.get_nick_value(trigger.nick, keys['lastfm'])
     if not username:
