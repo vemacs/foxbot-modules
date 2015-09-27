@@ -7,7 +7,7 @@ Licensed under the Eiffel Forum License 2.
 """
 from __future__ import unicode_literals
 from sopel import module, web
-from sopel.formatting import color, colors, bold
+from sopel.formatting import color, colors
 import json
 import re
 
@@ -29,8 +29,8 @@ def kernel(bot, trigger):
         if regex:
             if not regex.match(branch['moniker']) and not regex.match(branch['version']):
                 continue
-        versions.append('{0} ({1}|{2})'.format(color(branch['version'], colors.GREEN),
-            bold(branch['moniker']), bold(branch['released']['isodate'])))
+        versions.append('{} ({}|{})'.format(color(branch['version'], colors.GREEN),
+            branch['moniker'], branch['released']['isodate']))
 
     message = "Linux kernel versions: "
     message += ", ".join(versions)
