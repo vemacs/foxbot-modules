@@ -34,18 +34,18 @@ def run_command(bot, trigger, cmd):
         args = trigger.group(2).split(' ')
         if args[0] in add_strings:
             if len(args) == 1:
-                bot.reply('please provide a URL. (.%s -s <url>)' % cmd)
+                bot.reply('please provide a URL. (.{0} -s <url>)'.format(cmd))
             else:
                 url = args[1].strip()
                 bot.db.set_nick_value(trigger.nick, db_key, url)
-                bot.reply('%s set.' % cmd)
+                bot.reply('{0} set.'.format(cmd))
             return
         nick = args[0]
     url = bot.db.get_nick_value(nick, db_key)
     if not url:
         if nick == trigger.nick:
-            bot.reply('you have no saved %s.' % cmd)
+            bot.reply('you have no saved {0}.'.format(cmd))
         else:
-            bot.reply('%s has no saved %s.' % (nick, cmd))
+            bot.reply('{0} has no saved {1}.'.format(nick, cmd))
     else:
-        bot.say('%s [%s]' % (url, nick))
+        bot.say('{0} [{1}]'.format(url, nick))

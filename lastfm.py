@@ -46,7 +46,7 @@ def now_playing(bot, trigger):
         user = network.get_user(username)
         current_track = user.get_now_playing()
         if not current_track:
-            bot.say('%s is not listening to anything right now.' % trigger.nick)
+            bot.say('{0} is not listening to anything right now.'.format(trigger.nick))
         else:
-            bot.say('%s is now playing: %s - %s | %s' % (trigger.nick, current_track.get_artist().get_name(), current_track.get_title(), color(current_track.get_url(), colors.BLUE)))
+            bot.say('{0} is now playing: {1} - {2} | {3}'.format(trigger.nick, current_track.get_artist().get_name(), current_track.get_title(), color(current_track.get_url(), colors.BLUE)))
 
