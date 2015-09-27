@@ -59,4 +59,4 @@ def run_command(bot, trigger, cmd):
         else:
             bot.reply('%s has no saved %s.' % (nick, cmd))
     else:
-        bot.reply('%s [%s]' % (url, nick))
+        bot.say('%s [%s]' % (url, nick))
