@@ -22,9 +22,9 @@ def desktop(bot, trigger):
     if not trigger.group(2):
         url = bot.db.get_nick_value(trigger.nick, keys['desktop'])
         if not url:
-            bot.say('You have no saved desktop!')
+            bot.reply('You have no saved desktop!')
             return
-        bot.say('%s [%s]' % (url, trigger.nick))
+        bot.reply('%s [%s]' % (url, trigger.nick))
         return
     if trigger.group(2).split(' ')[0] == '-s':
         if trigger.group(2).split(' ')[1].strip() == '':
@@ -37,18 +37,18 @@ def desktop(bot, trigger):
     nick = trigger.group(2).split(' ')[0]
     url = bot.db.get_nick_value(nick, keys['desktop'])
     if not url:
-        bot.say('%s has no saved desktop!' % nick)
+        bot.reply('%s has no saved desktop!' % nick)
         return
-    bot.say('%s [%s]' % (url, nick))
+    bot.reply('%s [%s]' % (url, nick))
 
 @commands('hp', 'homepage')
 def homepage(bot, trigger):
     if not trigger.group(2):
         url = bot.db.get_nick_value(trigger.nick, keys['homepage'])
         if not url:
-            bot.say('You have no saved homepage!')
+            bot.reply('You have no saved homepage!')
             return
-        bot.say('%s [%s]' % (url, trigger.nick))
+        bot.reply('%s [%s]' % (url, trigger.nick))
         return
     if trigger.group(2).split(' ')[0] == '-s':
         if trigger.group(2).split(' ')[1].strip() == '':
@@ -61,18 +61,18 @@ def homepage(bot, trigger):
     nick = trigger.group(2).split(' ')[0]
     url = bot.db.get_nick_value(nick, keys['homepage'])
     if not desktop_url:
-        bot.say('%s has no saved homepage!' % nick)
+        bot.reply('%s has no saved homepage!' % nick)
         return
-    bot.say('%s [%s]' % (url, nick))
+    bot.reply('%s [%s]' % (url, nick))
 
 @commands('hscr', 'homescreen')
 def homescreen(bot, trigger):
     if not trigger.group(2):
         url = bot.db.get_nick_value(trigger.nick, keys['homescreen'])
         if not url:
-            bot.say('You have no saved homescreen!')
+            bot.reply('You have no saved homescreen!')
             return
-        bot.say('%s [%s]' % (url, trigger.nick))
+        bot.reply('%s [%s]' % (url, trigger.nick))
         return
     if trigger.group(2).split(' ')[0] == '-s':
         if trigger.group(2).split(' ')[1].strip() == '':
@@ -85,18 +85,18 @@ def homescreen(bot, trigger):
     nick = trigger.group(2).split(' ')[0]
     url = bot.db.get_nick_value(nick, keys['homescreen'])
     if not desktop_url:
-        bot.say('%s has no saved homescreen!' % nick)
+        bot.reply('%s has no saved homescreen!' % nick)
         return
-    bot.say('%s [%s]' % (url, nick))
+    bot.reply('%s [%s]' % (url, nick))
 
 @commands('waifu')
 def waifu(bot, trigger):
     if not trigger.group(2):
         url = bot.db.get_nick_value(trigger.nick, keys['waifu'])
         if not url:
-            bot.say('You have no saved waifu!')
+            bot.reply('You have no saved waifu!')
             return
-        bot.say('%s [%s]' % (url, trigger.nick))
+        bot.reply('%s [%s]' % (url, trigger.nick))
         return
     if trigger.group(2).split(' ')[0] == '-s':
         if trigger.group(2).split(' ')[1].strip() == '':
@@ -109,6 +109,6 @@ def waifu(bot, trigger):
     nick = trigger.group(2).split(' ')[0]
     url = bot.db.get_nick_value(nick, keys['waifu'])
     if not desktop_url:
-        bot.say('%s has no saved waifu!' % nick)
+        bot.reply('%s has no saved waifu!' % nick)
         return
-    bot.say('%s [%s]' % (url, nick))
+    bot.reply('%s [%s]' % (url, nick))
