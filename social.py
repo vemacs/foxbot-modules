@@ -49,4 +49,3 @@ def run_command(bot, trigger, cmd):
             bot.reply('{0} has no saved {1}.'.format(nick, cmd))
     else:
         bot.say('{0} [{1}]'.format(url, nick))
-

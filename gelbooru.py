@@ -84,7 +84,8 @@ def gelbooru_url(bot, trigger):
     soup = get_soup('http://gelbooru.com/index.php?page=dapi&s=post&q=index&id={0}'.format(trigger.group(1)))
     posts = soup.find_all('post')
 
-    id, score, url, rating, tags = (posts[0].get('id'), posts[0].get('score'), posts[0].get('file_url'), posts[0].get('rating'), posts[0].get('tags'))
+    post = posts[0]
+    id, score, url, rating, tags = (post.get('id'), post.get('score'), post.get('file_url'), post.get('rating'), post.get('tags'))
 
     if 'e' in rating:
         rating = color('NSFW', colors.RED)
