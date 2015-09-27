@@ -6,6 +6,12 @@ from sopel.formatting import bold
 def intensify(bot, trigger):
     bot.say(bold('[{0} INTENSIFIES]'.format(trigger.group(1).upper())))
 
+
+@rule('^wew$')
+def wew(bot, trigger):
+    bot.say(bold('w e w l a d'))
+
+
 @rule('.*')
 @event("JOIN")
 @unblockable
