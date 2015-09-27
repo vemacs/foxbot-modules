@@ -19,7 +19,7 @@ lastsearch = ''
 
 
 def setup(bot):
-    egex = re.compile('safebooru.org.*(?:\?|&)id\=([-_a-zA-Z0-9]+)')
+    regex = re.compile('safebooru.org.*(?:\?|&)id\=([-_a-zA-Z0-9]+)')
     if not bot.memory.contains('url_callbacks'):
         bot.memory['url_callbacks'] = tools.SopelMemory()
     bot.memory['url_callbacks'][regex] = safebooru_url
