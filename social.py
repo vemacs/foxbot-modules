@@ -1,10 +1,6 @@
 # coding=utf8
 from sopel.module import commands
 
-def filename(self):
-    name = self.nick + '-' + self.config.core.host + '.social.db'
-    return os.path.join(self.config.core.homedir, name)
-
 @commands('lasturl')
 def lasturl(bot, trigger):
     sender = trigger.sender
@@ -15,7 +11,7 @@ def lasturl(bot, trigger):
 
 @commands('dtop', 'desktop')
 def dtop(bot, trigger):
-    if trigger.group(2).strip() == '':
+    if not trigger.group(2):
         desktop_url = bot.db.get_nick_value(trigger.nick, 'desktop_url')
         if not desktop_url:
             bot.say('You have no saved desktop!')
