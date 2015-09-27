@@ -10,5 +10,5 @@ def intensify(bot, trigger):
 @event("JOIN")
 @unblockable
 def honk_join(bot, trigger):
-    if not triggger.nick == bot.config.core.nick:
+    if not trigger.nick == bot.config.core.nick:
         bot.action('honks {0}'.format(trigger.nick))
