@@ -6,7 +6,6 @@ import pylast
 
 class LastSection(StaticSection):
     api_key = ValidatedAttribute('api_key')
-    api_secret = ValidatedAttribute('api_secret')
 
 db_prefix = 'lastfm_'
 keys = {
@@ -26,7 +25,6 @@ def setup(bot):
 def configure(config):
     config.define_section('lastfm', LastSection, validate=False)
     config.lastfm.configure_setting('api_key', 'last.fm API key')
-    config.lastfm.configure_setting('api_secret', 'last.fm API secret')
 
 @commands('lastfm', 'np')
 def now_playing(bot, trigger):
@@ -42,7 +40,7 @@ def now_playing(bot, trigger):
     if not bot.db.get_nick_value(trigger.nick, keys['lastfm']):
         bot.reply('you have no last.fm username set! Please set one with .np -s <username>')
         return
-    network = pylast.LastFMNetwork(api_key = bot.config.lastfm.api_key, api_secret = bot.config.lastfm.api_secret)
+    network = pylast.LastFMNetwork(api_key = bot.config.lastfm.api_key)
     user = network.get_user(trigger.nick)
     current_track = user.get_now_playing()
     if not current_track:
