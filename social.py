@@ -1,5 +1,5 @@
 # coding=utf8
-from sopel.module import commands
+from sopel.module import commands, example
 
 @commands('lasturl')
 def lasturl(bot, trigger):
