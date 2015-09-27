@@ -28,28 +28,27 @@ def intensify(bot, trigger):
 
 @rule('^wew$')
 def wew(bot, trigger):
-    if random() < chance:
+    if random() <= chance:
         bot.say(bold('w e w l a d'))
 
 
 @rule('^same$')
 def same(bot, trigger):
-    if random() < chance:
+    if random() <= chance:
         if not trigger.nick == bot.config.core.nick:
             bot.say('same')
 
 
 @rule('^ayy+')
 def ayy(bot, trigger):
-    if random() < chance:
+    if random() <= chance:
         bot.say('lmao')
 
 
 @rule('.*')
 @event("JOIN")
-@unblockable
 def honk_join(bot, trigger):
-    if random() < chance:
+    if random() <= chance:
         if not trigger.nick == bot.config.core.nick:
             bot.action('honks {0}'.format(trigger.nick))
 
