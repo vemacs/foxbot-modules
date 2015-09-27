@@ -111,9 +111,8 @@ def ytsearch(bot, trigger):
     likes = video_info['statistics']['likeCount']
     dislikes = video_info['statistics']['dislikeCount']
 
-    message = '[YT Search] {0} | https://youtu.be/{1} | Duration: {2} | Views: {3} | Uploader: {4} | {5} | {6}'
-            .format(bold(title), video_info['id'], duration, views, uploader, color(likes, colors.GREEN), color(likes, colors.RED))
-
+    message = '[YT Search] {0} | https://youtu.be/{1} | Duration: {2} | Views: {3} | Uploader: {4} | {5} | {6}'.format(
+      bold(title), video_info['id'], duration, views, uploader, color(likes, colors.GREEN), color(likes, colors.RED))
 
     bot.say(message)
 
@@ -137,7 +136,7 @@ def ytinfo(bot, trigger, found_match=None):
     likes = video_info['statistics']['likeCount']
     dislikes = video_info['statistics']['dislikeCount']
 
-    message = '[YouTube] {0} | Duration: {1} | Views: {2} | Uploader: {3} | {4} | {5}'
-            .format(bold(title), duration, views, uploader, color(likes, colors.GREEN), color(likes, colors.RED))
+    message = '[YouTube] {0} | Duration: {1} | Views: {2} | Uploader: {3} | {4} | {5}'.format(
+      bold(title), duration, views, uploader, color(likes, colors.GREEN), color(likes, colors.RED))
 
     bot.say(message)
