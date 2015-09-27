@@ -17,30 +17,6 @@ def lasturl(bot, trigger):
         bot.reply('no URLs in memory.')
 
 
-@commands('dtop', 'desktop')
-def desktop(bot, trigger):
-    res = run_command(bot, trigger, 'desktop')
-    bot.reply(res)
-
-
-@commands('waifu')
-def desktop(bot, trigger):
-    res = run_command(bot, trigger, 'waifu')
-    bot.reply(res)
-
-
-@commands('hs', 'homescreen')
-def desktop(bot, trigger):
-    res = run_command(bot, trigger, 'homescreen')
-    bot.reply(res)
-
-
-@commands('hp', 'homepage')
-def desktop(bot, trigger):
-    res = run_command(bot, trigger, 'homepage')
-    bot.reply(res)
-
-
 def run_command(bot, trigger, cmd):
     res = None
     db_prefix = 'social_'
@@ -67,3 +43,28 @@ def run_command(bot, trigger, cmd):
         else:
             res = '%s [%s]' % (url, nick)
     return res
+
+
+@commands('dtop', 'desktop')
+def desktop(bot, trigger):
+    res = run_command(bot, trigger, 'desktop')
+    bot.reply(res)
+
+
+@commands('waifu')
+def desktop(bot, trigger):
+    res = run_command(bot, trigger, 'waifu')
+    bot.reply(res)
+
+
+@commands('hs', 'homescreen')
+def desktop(bot, trigger):
+    res = run_command(bot, trigger, 'homescreen')
+    bot.reply(res)
+
+
+@commands('hp', 'homepage')
+def desktop(bot, trigger):
+    res = run_command(bot, trigger, 'homepage')
+    bot.reply(res)
+
