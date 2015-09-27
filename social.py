@@ -1,5 +1,5 @@
 # coding=utf8
-from sopel.module import commands, example
+from sopel.module import commands
 
 db_prefix = 'social_'
 keys = {
