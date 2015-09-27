@@ -16,8 +16,6 @@ add_strings = [
         "-s", "-set", "--set"
 ]
 
-network = None
-
 def setup(bot):
     bot.config.define_section('lastfm', LastSection)
 
@@ -47,3 +45,4 @@ def now_playing(bot, trigger):
         bot.say('%s is not listening to anything right now.' % trigger.nick)
         return
     bot.say('%s is now playing: %s - %s' % (trigger.nick, current_track.get_artist().get_name(), current_track.get_title()))
+
