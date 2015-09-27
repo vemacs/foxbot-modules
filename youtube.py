@@ -112,7 +112,7 @@ def ytsearch(bot, trigger):
     dislikes = video_info['statistics']['dislikeCount']
 
     message = '[YT Search] {0} | https://youtu.be/{1} | Duration: {2} | Views: {3} | Uploader: {4} | {5} | {6}'.format(
-      bold(title), video_info['id'], duration, views, uploader, color(likes, colors.GREEN), color(likes, colors.RED))
+      bold(title), video_info['id'], duration, views, uploader, color(likes, colors.GREEN), color(dislikes, colors.RED))
 
     bot.say(message)
 
@@ -123,7 +123,7 @@ def ytinfo(bot, trigger, found_match=None):
     Get information about the given youtube video
     """
     match = found_match or trigger
-    uri = 'https://www.googleapis.com/youtube/v3/videos?id=' + match.group(2) + '&part=contentDetails,snippet,statistics'
+    uri = 'https://www.googleapis.com/youtube/v3/videos?id={0}&part=contentDetails,snippet,statistics'.format(match.group(2))
 
     video_info = ytget(bot, trigger, uri)
     if video_info is None:
@@ -137,6 +137,6 @@ def ytinfo(bot, trigger, found_match=None):
     dislikes = video_info['statistics']['dislikeCount']
 
     message = '[YouTube] {0} | Duration: {1} | Views: {2} | Uploader: {3} | {4} | {5}'.format(
-      bold(title), duration, views, uploader, color(likes, colors.GREEN), color(likes, colors.RED))
+      bold(title), duration, views, uploader, color(likes, colors.GREEN), color(dislikes, colors.RED))
 
     bot.say(message)
