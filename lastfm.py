@@ -3,19 +3,11 @@ from sopel.module import commands
 from sopel.config.types import StaticSection, ValidatedAttribute
 from sopel.formatting import color, colors
 import pylast
+from constants import ADD_STRINGS
 
 class LastSection(StaticSection):
     api_key = ValidatedAttribute('api_key')
 
-db_prefix = 'lastfm_'
-keys = {
-    'lastfm': db_prefix + 'username',
-}
-
-add_strings = [
-    "-a", "-add", "--add",
-        "-s", "-set", "--set"
-]
 
 def setup(bot):
     bot.config.define_section('lastfm', LastSection)
@@ -28,17 +20,18 @@ def configure(config):
 
 @commands('lastfm', 'np')
 def now_playing(bot, trigger):
+    db_key = 'lastfm_username'
     if trigger.group(2):
         args = trigger.group(2).split(' ')
-        if args[0] in add_strings:
+        if args[0] in ADD_STRINGS:
             if len(args) == 1:
                 bot.reply('please provide a username. (.np -s <url>)')
             else:
                 username = args[1].strip()
-                bot.db.set_nick_value(trigger.nick, keys['lastfm'], username)
+                bot.db.set_nick_value(trigger.nick, db_key, username)
                 bot.reply('last.fm username set.')
         return
-    username = bot.db.get_nick_value(trigger.nick, keys['lastfm'])
+    username = bot.db.get_nick_value(trigger.nick, db_key)
     if not username:
         bot.reply('you have no last.fm username set. Please set one with .np -s <username>')
     else:

@@ -1,10 +1,6 @@
 # coding=utf8
 from sopel.module import commands
-
-add_strings = [
-    "-a", "-add", "--add",
-    "-s", "-set", "--set"
-]
+from constants import ADD_STRINGS
 
 
 @commands('dtop', 'desktop')
@@ -32,7 +28,7 @@ def run_command(bot, trigger, cmd):
     nick = trigger.nick
     if trigger.group(2):
         args = trigger.group(2).split(' ')
-        if args[0] in add_strings:
+        if args[0] in ADD_STRINGS:
             if len(args) == 1:
                 bot.reply('please provide a URL. (.{0} -s <url>)'.format(cmd))
             else:
@@ -49,3 +45,4 @@ def run_command(bot, trigger, cmd):
             bot.reply('{0} has no saved {1}.'.format(nick, cmd))
     else:
         bot.say('{0} [{1}]'.format(url, nick))
+
