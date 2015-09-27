@@ -40,5 +40,5 @@ def get_page_info(bot, trigger):
     if not requested:
         bot.say('[deviantart] Error:  does not exist.')
     else:
-        message = '[deviantart] {0} by {1} ({2}) [{3}]'.format(get_prefix(), requested['title'], requested['author_name'], requested['type'], requested['category'])
+        message = '[deviantart] {0} by {1} ({2}) [{3}]'.format(requested['title'], requested['author_name'], requested['type'], requested['category'])
         bot.say(message)
