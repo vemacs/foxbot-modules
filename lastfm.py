@@ -1,7 +1,6 @@
 # coding=utf8
 from sopel.module import commands
 from sopel.config.types import StaticSection, ValidatedAttribute
-from sopel.formatting import color, colors
 import pylast
 
 class LastSection(StaticSection):
