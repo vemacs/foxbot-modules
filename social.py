@@ -20,6 +20,8 @@ def lasturl(bot, trigger):
     if bot.memory.contains('last_seen_url') and sender in bot.memory['last_seen_url']:
         url = bot.memory['last_seen_url'][sender]
         bot.say('[LAST URL] %s' % url)
+    else:
+        bot.reply('no URLs in memory!')
 
 
 @commands('dtop', 'desktop')
