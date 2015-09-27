@@ -109,7 +109,7 @@ def setup(bot):
 
     # locks for log files
     if not bot.memory.contains('chanlog_locks'):
-        bot.memory['chanlog_locks'] = sopel.tools.WillieMemoryWithDefault(threading.Lock)
+        bot.memory['chanlog_locks'] = sopel.tools.SopelMemoryWithDefault(threading.Lock)
 
 
 @sopel.module.rule('.*')
