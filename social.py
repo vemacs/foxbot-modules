@@ -50,14 +50,13 @@ def run_command(bot, trigger, cmd):
                 url = args[1].strip()
                 bot.db.set_nick_value(trigger.nick, db_key, url)
                 bot.reply('%s set.' % cmd)
+            return
+        nick = args[0]
+    url = bot.db.get_nick_value(nick, db_key)
+    if not url:
+        if nick == trigger.nick:
+            bot.reply('you have no saved %s.' % cmd)
         else:
-            nick = args[0]
+            bot.reply('%s has no saved %s.' % (nick, cmd))
     else:
-        url = bot.db.get_nick_value(nick, db_key)
-        if not url:
-            if nick == trigger.nick:
-                bot.reply('you have no saved %s.' % cmd)
-            else:
-                bot.reply('%s has no saved %s.' % (nick, cmd))
-        else:
-            bot.reply('%s [%s]' % (url, nick))
+        bot.reply('%s [%s]' % (url, nick))
