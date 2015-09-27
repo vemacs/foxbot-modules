@@ -22,7 +22,7 @@ network = None
 
 def setup(bot):
     bot.config.define_section('lastfm', LastSection)
-    network = pylast.LastFMNetwork(api_key = bot.config.lastfm.api_key, bot.config.lastfm.api_secret)
+    network = pylast.LastFMNetwork(api_key = bot.config.lastfm.api_key, api_secret = bot.config.lastfm.api_secret)
 
 def configure(config):
     config.define_section('lastfm', LastSection, validate=False)
