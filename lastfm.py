@@ -47,5 +47,5 @@ def now_playing(bot, trigger):
             bot.say('{0} is not listening to anything right now.'.format(trigger.nick))
         else:
             trackinfo = '{0} - {1}'.format(current_track.get_artist().get_name(), current_track.get_title())
-            bot.say('{0} is now playing: {1} | {2}'.format(trigger.nick, bold(trackinfo), color(current_track.get_url(), colors.BLUE)))
+            bot.say('{0} is now playing {1} | {2}'.format(trigger.nick, bold(trackinfo), color(current_track.get_url(), colors.BLUE)))
 
