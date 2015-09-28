@@ -47,7 +47,7 @@ def refresh_cache(bot, inp):
     return
 
 
-@commands('gb', 'safebooru')
+@commands('sb', 'safebooru')
 def safebooru(bot, trigger):
     """
     .safebooru <tags> -- Gets a random image, based on given tags from safebooru.org
