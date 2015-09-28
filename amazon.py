@@ -20,7 +20,7 @@ def setup(bot):
     bot.memory['url_callbacks'][regex] = amazon_url
 
 
-@rule(r'(https?:\/\/(www\.)?amazon\.com/[^ ]+)')
+@rule(r'(https?:\/\/(www\.)?amazon\..+/[^ ]+)')
 def amazon_url(bot, trigger):
     item = html.fromstring(web.get(trigger.group(1)))
     try:
