@@ -7,7 +7,7 @@ Adapted for use with sopel from https://github.org/infinitylabs/uguubot/blob/mas
 Licensed under the Eiffel Forum License 2 (It's GPL compatible!).
 """
 from __future__ import unicode_literals
-from sopel.module import commands, rule
+from sopel.module import commands, rule, interval
 from sopel.formatting import color, colors
 from sopel import tools, web
 from bs4 import BeautifulSoup
@@ -45,6 +45,11 @@ def refresh_cache(bot, inp):
 
     random.shuffle(safebooru_cache)
     return
+
+
+@interval(300)
+def refresh_cache_interval(bot):
+    refresh_cache(bot)
 
 
 @commands('sb', 'safebooru')
