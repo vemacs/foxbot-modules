@@ -53,4 +53,4 @@ def amazon_url(bot, trigger):
     for y in xrange(int(star_count), 5):
         stars += u'\u2606'
 
-    bot.say('[Amazon] {0} | {1} | {2} | {3}', title, breadcrumb, price, stars)
+    bot.say('[Amazon] {0} | {1} | {2} | {3}'.format(title, breadcrumb, price, stars))
