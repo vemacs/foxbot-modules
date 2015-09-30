@@ -67,3 +67,24 @@ def now_playing(bot, trigger):
         else:
             trackinfo = '{0} - {1}'.format(current_track.get_artist().get_name(), current_track.get_title())
             bot.say('{0} is now playing {1} | {2}'.format(trigger.nick, bold(trackinfo), color(current_track.get_url(), colors.BLUE)))
+
+
+@commands('compare', 'lastfmcompare')
+def compare(bot, trigger):
+    global network
+    db_key = 'lastfm_username'
+    args = trigger.group(2).split(' ')
+    if not len(args) == 1i:
+        bot.reply('please provide 2 usernames.')
+    else:
+        user1 = bot.db.get_nick_value(trigger.nick, db_key)
+        user2 = bot.db.get_nick_value(args[0], db_key)
+        if not user1:
+            bot.reply('you have no last.fm username set. Please set one with .np -s <username>')
+            return
+        elif not user2:
+            bot.reply('{0} has no last.fm username set. Ask them to set one with .np -s <username>'.format(user2))
+            return
+        result = user1.compare_with_user(user2)
+        bot.reply('Result: {0}').format(result)
+
