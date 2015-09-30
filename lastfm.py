@@ -53,8 +53,11 @@ def now_playing(bot, trigger):
                 bot.reply('please provide a username. (.np -s <url>)')
             else:
                 username = args[1].strip()
-                bot.db.set_nick_value(trigger.nick, db_key, username)
-                bot.reply('last.fm username set.')
+                if network.get_user(username):
+                    bot.db.set_nick_value(trigger.nick, db_key, username)
+                    bot.reply('last.fm username set.')
+                else:
+                    bot.reply('no such last.fm user. Are you trying to trick me? :^)')
         return
     username = bot.db.get_nick_value(trigger.nick, db_key)
     if not username:
