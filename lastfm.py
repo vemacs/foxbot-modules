@@ -85,6 +85,6 @@ def compare(bot, trigger):
         elif not user2:
             bot.reply('{0} has no last.fm username set. Ask them to set one with .np -s <username>'.format(user2))
             return
-        result = network.get_user().compare_with_user(user2, shared_artists_limit=1)
+        result = network.get_user(user1).compare_with_user(user2)
         bot.reply('Result: {0}').format(result)
 
