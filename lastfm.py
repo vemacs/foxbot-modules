@@ -74,7 +74,7 @@ def compare(bot, trigger):
     global network
     db_key = 'lastfm_username'
     args = trigger.group(2).split(' ')
-    if not len(args) == 1i:
+    if not len(args) == 1:
         bot.reply('please provide 2 usernames.')
     else:
         user1 = bot.db.get_nick_value(trigger.nick, db_key)
