@@ -53,11 +53,16 @@ def now_playing(bot, trigger):
                 bot.reply('please provide a username. (.np -s <url>)')
             else:
                 username = args[1].strip()
+                user_exists = False
                 try:
                     network.get_user(username).get_id()
+                    user_exists = True
+                except pylast.WSError:
+                    pass
+                if user_exists:
                     bot.db.set_nick_value(trigger.nick, db_key, username)
                     bot.reply('last.fm username set.')
-                except pylast.WSError:
+                else:
                     bot.reply('no such last.fm user. Are you trying to trick me? :^)')
         return
     username = bot.db.get_nick_value(trigger.nick, db_key)
