@@ -87,7 +87,7 @@ def compare(bot, trigger):
             return
         try:
             result = network.get_user(user1).compare_with_user(user2)
-        except WSError:
+        except pylast.WSError:
             bot.reply('last.fm API is still broken.')
             return
         bot.reply('Result: {0}').format(result)
