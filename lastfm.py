@@ -82,22 +82,23 @@ def now_playing(bot, trigger):
 def compare(bot, trigger):
     global network
     db_key = 'lastfm_username'
-    args = trigger.group(2).split(' ')
-    if not len(args) == 1:
-        bot.reply('please provide 2 usernames.')
+    if trigger.group(2):
+        args = trigger.group(2).split(' ')
     else:
-        user1 = bot.db.get_nick_value(trigger.nick, db_key)
-        user2 = bot.db.get_nick_value(args[0], db_key)
-        if not user1:
-            bot.reply('you have no last.fm username set. Please set one with .np -s <username>')
-            return
-        elif not user2:
-            bot.reply('{0} has no last.fm username set. Ask them to set one with .np -s <username>'.format(user2))
-            return
-        try:
-            result = network.get_user(user1).compare_with_user(user2)
-        except pylast.WSError:
-            bot.reply('last.fm API is still broken.')
-            return
-        bot.reply('Result: {0}').format(result)
+        bot.reply('please provide a username to compare yourself to.')
+        return
+    user1 = bot.db.get_nick_value(trigger.nick, db_key)
+    user2 = bot.db.get_nick_value(args[0], db_key)
+    if not user1:
+        bot.reply('you have no last.fm username set. Please set one with .np -s <username>')
+        return
+    elif not user2:
+        bot.reply('{0} has no last.fm username set. Ask them to set one with .np -s <username>'.format(user2))
+        return
+    try:
+        result = network.get_user(user1).compare_with_user(user2)
+    except pylast.WSError:
+        bot.reply('last.fm API is still broken.')
+        return
+    bot.reply('Result: {0}').format(result)
 
