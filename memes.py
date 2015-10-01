@@ -21,6 +21,7 @@ from sopel.formatting import bold, color, colors
 
 chance = 0.25
 
+
 @rule('^\[(.+)\]$')
 def intensify(bot, trigger):
     bot.say(bold('[{0} INTENSIFIES]'.format(trigger.group(1).upper())))
