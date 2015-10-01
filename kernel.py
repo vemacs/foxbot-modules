@@ -30,7 +30,7 @@ def kernel(bot, trigger):
             if not regex.match(branch['moniker']) and not regex.match(branch['version']):
                 continue
         versions.append('{} ({}|{})'.format(color(branch['version'], colors.GREEN),
-            branch['moniker'], branch['released']['isodate']))
+                        branch['moniker'], branch['released']['isodate']))
 
     message = "Linux kernel versions: "
     message += ", ".join(versions)

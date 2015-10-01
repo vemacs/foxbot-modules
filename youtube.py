@@ -19,11 +19,6 @@ from sopel.formatting import color, colors, bold
 import datetime
 import json
 import re
-import sys
-if sys.version_info.major < 3:
-    from HTMLParser import HTMLParser
-else:
-    from html.parser import HTMLParser
 
 ISO8601_PERIOD_REGEX = re.compile(
     r"^(?P<sign>[+-])?"
@@ -48,7 +43,8 @@ def configure(config):
     | public_key   | aoijeoifjaSIOAohsofhaoAS       | Google API key (server key preferred) |
     """
 
-    if config.option('Configure youtube module? (You will need to register a new application at https://console.developers.google.com/)', False):
+    if config.option('Configure youtube module? '
+                     '(You will need to register a new application at https://console.developers.google.com/)', False):
         config.interactive_add('google', 'public_key', None)
 
 
@@ -65,9 +61,9 @@ def shutdown(bot):
 def ytget(bot, trigger, uri):
     if not bot.config.google.public_key:
         return None
-    bytes = web.get(uri + '&key=' + bot.config.google.public_key)
+    raw = web.get('{0}&key={1}'.format(uri, bot.config.google.public_key))
     try:
-        result = json.loads(bytes)
+        result = json.loads(raw)
     except ValueError:
         return None
     result = result['items'][0]
@@ -97,7 +93,7 @@ def ytsearch(bot, trigger):
     if not trigger.group(2):
         return
     uri = 'https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=' + trigger.group(2)
-    raw = web.get(uri + '&key=' + bot.config.google.public_key)
+    raw = web.get('{0}&key={1}'.format(uri, bot.config.google.public_key))
     vid = json.loads(raw)['items'][0]['id']['videoId']
     uri = 'https://www.googleapis.com/youtube/v3/videos?id=' + vid + '&part=contentDetails,snippet,statistics'
     video_info = ytget(bot, trigger, uri)
@@ -123,7 +119,8 @@ def ytinfo(bot, trigger, found_match=None):
     Get information about the given youtube video
     """
     match = found_match or trigger
-    uri = 'https://www.googleapis.com/youtube/v3/videos?id={0}&part=contentDetails,snippet,statistics'.format(match.group(2))
+    uri = 'https://www.googleapis.com/youtube/v3/videos?id={0}&part=contentDetails,snippet,statistics'.format(
+        match.group(2))
 
     video_info = ytget(bot, trigger, uri)
     if video_info is None:

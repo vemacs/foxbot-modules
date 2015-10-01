@@ -29,18 +29,24 @@ def refresh_cache(bot, inp):
     global gelbooru_cache
     gelbooru_cache = []
     num = 0
-    search = ''
     if inp == '':
         search = 'rating:safe'
     else:
-        search = inp.replace('explicit', 'rating:explicit').replace('nsfw', 'rating:explicit').replace('safe', 'rating:safe').replace('sfw', 'rating:safe')
-    if not 'rating:' in search:
+        search = (inp.replace('explicit', 'rating:explicit')
+                  .replace('nsfw', 'rating:explicit')
+                  .replace('safe', 'rating:safe')
+                  .replace('sfw', 'rating:safe'))
+    if 'rating:' not in search:
         search += ' rating:safe'
     soup = get_soup('http://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=10&tags={0}'.format(search))
     posts = soup.find_all('post')
 
     while num < len(posts):
-        gelbooru_cache.append((posts[num].get('id'), posts[num].get('score'), posts[num].get('file_url'), posts[num].get('rating'), posts[num].get('tags')))
+        gelbooru_cache.append((posts[num].get('id'),
+                               posts[num].get('score'),
+                               posts[num].get('file_url'),
+                               posts[num].get('rating'),
+                               posts[num].get('tags')))
         num += 1
 
     random.shuffle(gelbooru_cache)
@@ -67,7 +73,7 @@ def gelbooru(bot, trigger):
         bot.say('No results for search "{0}"'.format(trigger.group(2).strip()))
         return
 
-    id, score, url, rating, tags = gelbooru_cache.pop()
+    post_id, score, url, rating, tags = gelbooru_cache.pop()
 
     if 'e' in rating:
         rating = color('NSFW', colors.RED)
@@ -76,7 +82,8 @@ def gelbooru(bot, trigger):
     elif 's' in rating:
         rating = color('Safe', colors.GREEN)
 
-    bot.say('[gelbooru] Score: {0} | Rating: {1} | http://gelbooru.com/index.php?page=post&s=view&id={2} | Tags: {3}'.format(score, rating, id, tags.strip()))
+    bot.say('[gelbooru] Score: {0} | Rating: {1} | http://gelbooru.com/index.php?page=post&s=view&id={2} | Tags: {3}'
+            .format(score, rating, post_id, tags.strip()))
 
 
 @rule(r'(?:.*)(?:gelbooru.com.*?id=)([-_a-zA-Z0-9]+)(?: .+)?')
@@ -85,8 +92,11 @@ def gelbooru_url(bot, trigger):
     posts = soup.find_all('post')
 
     post = posts[0]
-    id, score, url, rating, tags = (post.get('id'), post.get('score'), post.get('file_url'), post.get('rating'), post.get('tags'))
-
+    post_id, score, url, rating, tags = (post.get('id'),
+                                         post.get('score'),
+                                         post.get('file_url'),
+                                         post.get('rating'),
+                                         post.get('tags'))
     if 'e' in rating:
         rating = color('NSFW', colors.RED)
     elif 'q' in rating:

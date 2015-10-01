@@ -27,6 +27,7 @@ ADD_STRINGS = [
 
 network = None
 
+
 class LastSection(StaticSection):
     api_key = ValidatedAttribute('api_key')
 
@@ -34,7 +35,7 @@ class LastSection(StaticSection):
 def setup(bot):
     global network
     bot.config.define_section('lastfm', LastSection)
-    network = pylast.LastFMNetwork(api_key = bot.config.lastfm.api_key)
+    network = pylast.LastFMNetwork(api_key=bot.config.lastfm.api_key)
 
 
 def configure(config):
@@ -75,7 +76,8 @@ def now_playing(bot, trigger):
             bot.say('{0} is not listening to anything right now.'.format(trigger.nick))
         else:
             trackinfo = '{0} - {1}'.format(current_track.get_artist().get_name(), current_track.get_title())
-            bot.say('{0} is now playing {1} | {2}'.format(trigger.nick, bold(trackinfo), color(current_track.get_url(), colors.BLUE)))
+            bot.say('{0} is now playing {1} | {2}'
+                    .format(trigger.nick, bold(trackinfo), color(current_track.get_url(), colors.BLUE)))
 
 
 @commands('compare', 'lastfmcompare')
@@ -101,4 +103,3 @@ def compare(bot, trigger):
         bot.reply('last.fm API is still broken.')
         return
     bot.reply('Result: {0}').format(result)
-
