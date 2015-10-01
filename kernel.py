@@ -15,7 +15,7 @@ import re
 @module.commands('kernel')
 def kernel(bot, trigger):
     """
-    .kernel [branch] - Show the latest linux kernel
+    .kernel [branch] - Show the latest Linux kernel
     """
     contents = web.get('https://www.kernel.org/releases.json')
     parsed = json.loads(contents)
